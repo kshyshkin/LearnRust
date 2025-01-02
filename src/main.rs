@@ -22,7 +22,7 @@ fn add_to_title(book :&mut Book, extra :String) {
 }
 
 fn main() {
-    let book = Book {
+    let mut book = Book {
         title: String::from("Rust"),
         author: String::from("James Gosling"),
         pages: 100,
