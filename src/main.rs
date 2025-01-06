@@ -30,5 +30,25 @@ fn main() {
   scores.remove("Team C");
   
   println!("{:?}", scores);
+
+  // check and add only if entry not exist
+  scores.entry(String::from("Team C")).or_insert(30);
+  scores.entry(String::from("Team A")).or_insert(10);
+
+  // update value based on current 
+  let score =  scores.entry(String::from("Team A")).or_insert(10);
+  *score+=5;
   
+  println!("{:?}", scores);
+
+  // practical example
+
+  let string = "Hello hello my beautiful world my";
+  let mut word_count = HashMap::new();
+
+  for word in string.split_whitespace() {
+    let wc = word_count.entry(word.to_lowercase()).or_insert(0);
+    *wc+=1;
+  }
+  println!("{:?}", word_count);
 }
