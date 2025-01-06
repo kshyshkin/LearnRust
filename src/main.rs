@@ -1,37 +1,34 @@
+use std::collections::HashMap;
+
 fn main() {
-  // let mut v: Vec<i32> = Vec::new();
-  // v.push(10);
-  // v.push(20);
-  // v.push(30);
+  // create
+  let mut scores = HashMap::new();
 
-  let v = vec![10,20,30];
+  // add entity
+  scores.insert(String::from("Team A"), 10);
+  scores.insert(String::from("Team B"), 20);
+  println!("{:?}", scores);
 
-  println!("first elem {}", v[0]);
+  // find by key
+  if let Some(score) = scores.get("Team A") {
+    println!("Team A have score: {}", score);  
+  } else {
+    println!("Team A have no score");
+  } 
 
-  match v.get(3) {
-    Some(value) => println!("second elem {}", value),
-    None => println!("Non elem found"),
+  // change value by key
+  scores.insert(String::from("Team A"), 30);
+  println!("{:?}", scores);
+
+  // iterate 
+  for (key, value) in &scores {
+    println!("{} | {}", key, value);
   }
 
-  let mut books_v: Vec<String> = Vec::new();
-
-  books_v.push("Help".to_string());
-  books_v.push("Me".to_string());
-
-  println!("first book: {}", books_v[0]);
-
-  match books_v.get(1) {
-    Some(value) => println!("second: {}", value),
-    None => println!("To DO"),
-  }
-
-  for value in &mut books_v {
-    *value += "_changed";
-  }
-
-  books_v.pop();
-  books_v.pop();
-  books_v.remove(0);
+  //add and remove
+  scores.insert(String::from("Team C"), 30);
+  scores.remove("Team C");
   
-  println!("{:?}", books_v);
+  println!("{:?}", scores);
+  
 }
